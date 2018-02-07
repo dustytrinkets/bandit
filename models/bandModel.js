@@ -4,7 +4,7 @@ var mongoose = require ('mongoose');
 
 var Schema = mongoose.Schema;
 
-var bansSchema = Schema({
+var bandSchema = Schema({
 	name: String,
 	instrument: String,
 	style: String,
