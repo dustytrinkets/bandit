@@ -12,6 +12,7 @@ function insertUser (req,res) {
 	user.age = params.age;
 	user.instrument = params.instrument;
 	user.style = params.style;
+	user.location = params.location;
 	user.date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 
 		console.log(user)
@@ -45,4 +46,20 @@ function getUser (req,res) {
 	})
 }
 
-module.exports = {insertUser, getUser}
+function getUsers (req,res) {
+	userModel.find({}, (err,resp)=>{
+		if (err){
+			res.status(500).send({message: "Error getting users data"});
+		}
+		else{
+			if (!resp){
+                res.status(400).send({message: "No users found"})
+			} 
+			else{
+				res.status(200).send({data:resp})
+			}
+		}
+	})
+}
+
+module.exports = {insertUser, getUser, getUsers}
