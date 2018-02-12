@@ -26,4 +26,23 @@ function insertUser (req,res) {
 	})
 }
 
-module.exports = {insertUser}
+
+function getUser (req,res) {
+    var id = req.params.id;
+
+	userModel.findById(id, function(err,resp){
+		if(err){
+			res.status(500).send({message: "Error getting user data"});
+		}
+		else{
+			if(!resp){
+                res.status(400).send({message: "No user with that id"})
+            }else{
+                res.status(200).send({data:resp})
+            }
+
+		}
+	})
+}
+
+module.exports = {insertUser, getUser}

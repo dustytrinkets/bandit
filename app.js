@@ -2,7 +2,8 @@
 
 var express = require ('express');
 var bodyParser = require ('body-parser')
-var api = require ('./routes/rutas-bandit')
+var api = require ('./routes/routesBand')
+var api = require ('./routes/routesUser')
 
 var app= express();
 
