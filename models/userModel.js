@@ -10,6 +10,7 @@ var userSchema = Schema({
 	instrument: String,
 	style: String,
 	date: String,
+	location: String,
 });
 
 module.exports = mongoose.model('User' , userSchema)
