@@ -12,5 +12,6 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use('/api',api)
 
+console.log(api)
 
 module.exports = app;
