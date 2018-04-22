@@ -1,8 +1,8 @@
 'use strict'
 
 var mongoose = require ('mongoose')
-var app = require ('./app');
-var port = process.env.PORT || 3100;
+var app = require ('./app.js');
+var port = process.env.PORT || 3977;
 
 mongoose.connect('mongodb://admin:admin@ds251179.mlab.com:51179/bandit',function(err, res){
     if(err){
