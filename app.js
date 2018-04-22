@@ -2,15 +2,17 @@
 
 var express = require ('express');
 var bodyParser = require ('body-parser')
-var api = require ('./routes/routesBand')
-var api = require ('./routes/routesUser')
+var bandRoutes = require ('./routes/routesBand')
+var userRoutes = require ('./routes/routesUser')
 
 var app = express();
 
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use('/api',api)
+
+app.use('/api', bandRoutes)
+app.use('/api', userRoutes)
 
 //Usamos swagger para documentar la API
 var swaggerUi = require('swagger-ui-express'),
