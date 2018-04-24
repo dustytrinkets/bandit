@@ -5,12 +5,25 @@ var mongoose = require ('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = Schema({
-	name: String,
+	name: {
+        type: String, 
+        required:true
+    },
+	email: {
+        type: String, 
+        required:true
+    },
 	age: Number,
-	instrument: String,
-	style: String,
+	instrument: [String],
+	style: [{
+		type: String
+	}],
 	date: String,
-	location: String,
+	location: [{
+		type: Array,
+		default:[]
+	}],
+	image: String,
 });
 
 module.exports = mongoose.model('User' , userSchema)

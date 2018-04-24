@@ -5,11 +5,29 @@ var mongoose = require ('mongoose');
 var Schema = mongoose.Schema;
 
 var bandSchema = Schema({
-	name: String,
-	instrument: String,
-	style: String,
-	location: String,
-	members: Number,
+	name: {
+        type: String, 
+        required:true
+	},
+	url: [{
+		type: Array,
+		default:[]
+	}],
+	vacancy: [{
+		type: String
+	}],
+	style: [{
+		type: String
+	}],
+	location: [{
+		type: Array,
+		default:[]
+	}],
+	member_number: Number,
+	members: [{
+		type: Array,
+		default:[]
+	}],
 	date: String,
 });
 
