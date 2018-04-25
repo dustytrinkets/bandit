@@ -4,7 +4,7 @@ var mongoose = require ('mongoose');
 
 var Schema = mongoose.Schema;
 
-var userSchema = Schema({
+var UserSchema = Schema({
 	name: {
         type: String, 
         required:true
@@ -19,11 +19,14 @@ var userSchema = Schema({
 		type: String
 	}],
 	date: String,
-	location: [{
-		type: Array,
-		default:[]
-	}],
+	location: {
+		// type: [
+			lat:{
+				type:Number},
+			long: {
+				type:Number},
+	},
 	image: String,
 });
 
-module.exports = mongoose.model('User' , userSchema)
+module.exports = mongoose.model('User' , UserSchema)

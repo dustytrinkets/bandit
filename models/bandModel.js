@@ -1,10 +1,11 @@
 'use strict'
 
 var mongoose = require ('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var Schema = mongoose.Schema;
 
-var bandSchema = Schema({
+var BandSchema = Schema({
 	name: {
         type: String, 
         required:true
@@ -31,4 +32,4 @@ var bandSchema = Schema({
 	date: String,
 });
 
-module.exports = mongoose.model('Band' , bandSchema)
+module.exports = mongoose.model('Band' , BandSchema)
