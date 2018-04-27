@@ -1,28 +1,32 @@
 'use strict'
 
-var userModel = require('../models/userModel');
+var User = require('../models/userModel');
 var moment = require ('moment');
+var bcrypt = require('bcrypt-nodejs');
+var jwt = require('../services/jwt');
+
 
 function insertUser (req,res) {
-	var user = new userModel();
+	var user = new User();
+	console.log(req.body)
 
 	var params = req.body;
-	console.log(params)
 	user.name = params.name;
+	user.email = params.email;
 	user.age = params.age;
 	user.instrument = params.instrument;
 	user.style = params.style;
-	user.location = params.location;
+	// user.location = [params.lat, params.long];
 	user.date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 
-		console.log(user)
+ 		// console.log(user)
 
 	user.save(function(err,resp){
 		if(err){
 			res.status(500).send({message: "Error saving user data"});
 		}
 		else{
-			res.status(200).send({data:resp});
+			res.status(200).send({message:resp});
 		}
 	})
 }
@@ -31,7 +35,7 @@ function insertUser (req,res) {
 function getUser (req,res) {
     var id = req.params.id;
 
-	userModel.findById(id, function(err,resp){
+	User.findById(id, function(err,resp){
 		if(err){
 			res.status(500).send({message: "Error getting user data"});
 		}
@@ -47,7 +51,7 @@ function getUser (req,res) {
 }
 
 function getUsers (req,res) {
-	userModel.find({}, (err,resp)=>{
+	User.find({}, (err,resp)=>{
 		if (err){
 			res.status(500).send({message: "Error getting users data"});
 		}
@@ -62,4 +66,67 @@ function getUsers (req,res) {
 	})
 }
 
-module.exports = {insertUser, getUser, getUsers}
+
+
+function updateUser (req,res){ //metodo put
+    var id = req.params.id
+
+    var userObj = req.body;
+
+    User.findByIdAndUpdate(id, userObj, function (err,result) {
+        if (err) {
+            res.status(500).send({ 'message': err.message })
+        } else {
+            res.status(200).send(result)
+        }
+    })    
+}
+
+//permisos borrar solo usuario propio? o si eres admin
+function deleteUser(req,res) {
+    var id = req.params.id
+
+    User.deleteOne({"_id":id}, function (err,result) {
+        if (err) {
+            res.status(500).send({ 'message': err.message })
+        } else {
+            res.status(200).send(result)
+        }
+    })
+}
+
+function insertImage(req, res){
+    var imagePath = req.files.image.path;
+    var userId = req.params.id;
+    User.findOneAndUpdate({_id:userId}, {image:imagePath}, function (err, user){
+        res.status(200).send(imagePath);
+    });
+}
+
+function login(req, res){ //registro por nombre o email
+   
+    var login = req.body.login;
+	var password = req.body.password;
+	
+    User.findOne({$or: [{email:login},{name:login}]}, function(err, user){
+        bcrypt.compare(password, user.password, function(err, check){
+            if (check){
+                // Si todo coincide, creamos el token y lo enviamos
+                res.status(200).send(jwt.createToken(user))
+            }else{
+                res.status(400).send("Usuario no logeado")
+            }
+        });
+    });
+
+}
+
+module.exports = {
+	insertUser, 
+	getUser, 
+	getUsers, 
+	updateUser,
+	deleteUser,
+	insertImage, 
+	login
+}

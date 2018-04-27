@@ -1,10 +1,12 @@
 'use strict'
 
-var bandModel = require('../models/bandModel');
+var Band = require('../models/bandModel');
 var moment = require ('moment');
 
+
 function insertBand (req,res) {
-	var band = new bandModel();
+
+	var band = new Band();
 
 	var params = req.body;
 	console.log(params)
@@ -27,8 +29,17 @@ function insertBand (req,res) {
 	})
 }
 
-// addmembertoband()
+
+function insertImage(req, res){
+    var imagePath = req.files.image.path;
+    var bandId = req.params.id;
+    Band.findOneAndUpdate({_id:bandId}, {image:imagePath}, function (err, user){
+        res.status(200).send(imagePath);
+    });
+}
 
 
-
-module.exports = {insertBand}
+module.exports = {
+	insertBand,
+	insertImage
+}

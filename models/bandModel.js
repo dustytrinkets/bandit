@@ -1,18 +1,37 @@
 'use strict'
 
 var mongoose = require ('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 
 var Schema = mongoose.Schema;
 
-var bandSchema = Schema({
-	name: String,
-	members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }],
-	about: String,
-	instrument: String,
-	style: [String],
-	url: String,	
-	location: String,
+var BandSchema = Schema({
+	name: {
+        type: String, 
+        required:true
+	},
+	url: [{
+		type: Array,
+		default:[]
+	}],
+	vacancy: [{
+		type: String
+	}],
+	style: [{
+		type: String
+	}],
+	location: {
+		lat: {
+			type: Number
+		},
+		long: {
+			type: Number
+		},
+	},
+	members: [{
+		type: Array
+	}],
 	date: String,
 });
 
-module.exports = mongoose.model('Band' , bandSchema)
+module.exports = mongoose.model('Band' , BandSchema)

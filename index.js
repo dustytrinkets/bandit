@@ -5,6 +5,7 @@ var app = require ('./app.js');
 var port = process.env.PORT || 3977;
 
 mongoose.connect('mongodb://admin:admin@ds251179.mlab.com:51179/bandit',function(err, res){
+// mongoose.connect('mongodb://localhost:27017/bandit',function(err, res){
     if(err){
         throw err;
     }else{

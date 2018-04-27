@@ -245,6 +245,7 @@
     "definitions": {
         "User": {
             "required": [
+                "name",
                 "email",
                 "_id"
             ],
@@ -253,7 +254,33 @@
                     "type": "string",
                     "uniqueItems": true
                 },
+                "name": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
                 "email": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "age": {
+                    "type": "string"
+                },
+                "instrument": {
+                    "type": "array"
+                }
+            }
+        },
+        "Band": {
+            "required": [
+                "name",
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "name": {
                     "type": "string",
                     "uniqueItems": true
                 },
