@@ -14,6 +14,7 @@ var BandSchema = Schema({
 		type: Array,
 		default:[]
 	}],
+	rol: String,
 	vacancy: [{
 		type: String
 	}],
