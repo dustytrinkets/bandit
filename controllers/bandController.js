@@ -27,4 +27,8 @@ function insertBand (req,res) {
 	})
 }
 
+// addmembertoband()
+
+
+
 module.exports = {insertBand}

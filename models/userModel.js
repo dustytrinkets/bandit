@@ -7,10 +7,12 @@ var Schema = mongoose.Schema;
 var userSchema = Schema({
 	name: String,
 	age: Number,
-	instrument: String,
-	style: String,
-	date: String,
+	about: String,	
+	instrument: [String],
+	style: [String],
+	url: String,
 	location: String,
+	date: String,
 });
 
 module.exports = mongoose.model('User' , userSchema)

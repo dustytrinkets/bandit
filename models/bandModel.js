@@ -6,10 +6,12 @@ var Schema = mongoose.Schema;
 
 var bandSchema = Schema({
 	name: String,
+	members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }],
+	about: String,
 	instrument: String,
-	style: String,
+	style: [String],
+	url: String,	
 	location: String,
-	members: Number,
 	date: String,
 });
 
