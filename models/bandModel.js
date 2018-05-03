@@ -14,20 +14,23 @@ var BandSchema = Schema({
 		type: Array,
 		default:[]
 	}],
+	rol: String,
 	vacancy: [{
 		type: String
 	}],
 	style: [{
 		type: String
 	}],
-	location: [{
-		type: Array,
-		default:[]
-	}],
-	member_number: Number,
+	location: {
+		lat: {
+			type: Number
+		},
+		long: {
+			type: Number
+		},
+	},
 	members: [{
-		type: Array,
-		default:[]
+		type: Array
 	}],
 	date: String,
 });

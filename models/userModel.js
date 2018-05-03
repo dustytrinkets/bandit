@@ -14,10 +14,10 @@ var UserSchema = Schema({
         required:true
     },
 	age: Number,
+	about: String,	
+	style: [String],
+	url: String,
 	instrument: [String],
-	style: [{
-		type: String
-	}],
 	date: String,
 	location: {
 			lat:{
