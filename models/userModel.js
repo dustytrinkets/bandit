@@ -20,7 +20,6 @@ var UserSchema = Schema({
 	}],
 	date: String,
 	location: {
-		// type: [
 			lat:{
 				type:Number},
 			long: {

@@ -95,6 +95,7 @@ function deleteUser(req,res) {
     })
 }
 
+//inseruserinband
 
 function insertImage(req, res){
     var imagePath = req.files.image.path;
@@ -112,7 +113,6 @@ function login(req, res){ //registro por nombre o email
     User.findOne({$or: [{email:login},{name:login}]}, function(err, user){
         bcrypt.compare(password, user.password, function(err, check){
             if (check){
-                // Si todo coincide, creamos el token y lo enviamos
                 res.status(200).send(jwt.createToken(user))
             }else{
                 res.status(400).send("Usuario no logeado")
