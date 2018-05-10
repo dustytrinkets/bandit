@@ -80,7 +80,7 @@ function updateBand (req,res){ //metodo put
     })    
 }
 
-//permisos borrar solo usuario propio? o si eres admin
+//permisos borrar solo usuario propio o si eres admin
 function deleteBand(req,res) {
     var id = req.params.id
 
