@@ -11,7 +11,7 @@ var md_upload = multiparty({ uploadDir: './uploads/users' })
 
 
 
-api.post('/band', bandController.insertBand);
+api.post('/band', [md_auth.ensureAuth], bandController.insertBand);
 api.get('/band/:id', [md_auth.ensureAuth], bandController.getBand);
 api.get('/band', [md_auth.ensureAuth], bandController.getBands);
 api.put('/band/:id' , [md_auth.ensureAuth], bandController.updateBand)

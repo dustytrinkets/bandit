@@ -17,7 +17,7 @@ var UserSchema = Schema({
 	age: Number,
 	url: [String], //link/s a web/s del grupo(youtube, bandcamp)	
 	about: String,	
-	bands: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }], //bandas a las que pertenece
+	bands: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Band' }], //bandas a las que pertenece
 	style: [String], //estilo/s musical/es 
 	instrument: [String], //instrumentos que toca el usuario
 	location: [String, String],
