@@ -11,13 +11,12 @@ function insertBand (req,res) {
 	var params = req.body;
 	console.log(params)
 	band.name = params.name;
-	band.instrument = params.instrument;
+	band.vacancy = params.vacancy;
 	band.style = params.style;
-	band.location = params.location;
+	band.location = [params.lat, params.long];	
 	band.members = params.members;
 	band.date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 
-		console.log(band)
 
 	band.save(function(err,resp){
 		if(err){
@@ -63,7 +62,6 @@ function getBands (req,res) {
 	})
 }
 
-//getbandusers
 
 
 function updateBand (req,res){ //metodo put

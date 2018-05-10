@@ -16,10 +16,8 @@ function insertUser (req,res) {
 	user.age = params.age;
 	user.instrument = params.instrument;
 	user.style = params.style;
-	// user.location = [params.lat, params.long];
+	user.location = [params.lat, params.long];
 	user.date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-
- 		// console.log(user)
 
 	user.save(function(err,resp){
 		if(err){
@@ -119,7 +117,6 @@ function login(req, res){ //registro por nombre o email
             }
         });
     });
-
 }
 
 module.exports = {

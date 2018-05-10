@@ -19,12 +19,7 @@ var UserSchema = Schema({
 	url: String,
 	instrument: [String],
 	date: String,
-	location: {
-			lat:{
-				type:Number},
-			long: {
-				type:Number},
-	},
+	location: [String, String],
 	image: String,
 });
 

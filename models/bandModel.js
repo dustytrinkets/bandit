@@ -10,25 +10,10 @@ var BandSchema = Schema({
         type: String, 
         required:true
 	},
-	url: [{
-		type: Array,
-		default:[]
-	}],
-	rol: String,
-	vacancy: [{
-		type: String
-	}],
-	style: [{
-		type: String
-	}],
-	location: {
-		lat: {
-			type: Number
-		},
-		long: {
-			type: Number
-		},
-	},
+	url: [String],
+	vacancy: [String],
+	style:[String],
+	location: [String, String],
 	members: [{
 		type: Array
 	}],
