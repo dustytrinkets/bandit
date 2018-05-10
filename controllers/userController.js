@@ -20,10 +20,8 @@ function insertUser (req,res) {
 	user.bands = params.bands;
 	user.style = params.style;
 	user.instrument = params.instrument;
-	// user.location = [params.lat, params.long];
+	user.location = [params.lat, params.long];
 	user.date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-
- 		// console.log(user)
 
 	user.save(function(err,resp){
 		if(err){
@@ -99,6 +97,8 @@ function deleteUser(req,res) {
     })
 }
 
+//inseruserinband
+
 function insertImage(req, res){
     var imagePath = req.files.image.path;
     var userId = req.params.id;
@@ -115,14 +115,12 @@ function login(req, res){ //registro por nombre o email
     User.findOne({$or: [{email:login},{name:login}]}, function(err, user){
         bcrypt.compare(password, user.password, function(err, check){
             if (check){
-                // Si todo coincide, creamos el token y lo enviamos
                 res.status(200).send(jwt.createToken(user))
             }else{
                 res.status(400).send("Usuario no logeado")
             }
         });
     });
-
 }
 
 module.exports = {

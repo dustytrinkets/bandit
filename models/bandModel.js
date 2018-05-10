@@ -12,19 +12,11 @@ var BandSchema = Schema({
 	},
 	url: [String], //link/s a web/s del grupo(youtube, bandcamp)
 	about: String,
-	// rol: String,
 	vacancy: [String], //puesto/s libre/s en el grupo
 	style: [String], //estilo/s musical/es
-	// location: {
-	// 	lat: {
-	// 		type: Number
-	// 	},
-	// 	long: {
-	// 		type: Number
-	// 	},
-	// },
-	members: [String], //miembros de la banda, ids de usuarios miembros
+	members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], //miembros de la banda, ids de usuarios miembros
 	image:String,
+	location: [String, String],
 	date: String,
 });
 
