@@ -13,9 +13,13 @@ function insertUser (req,res) {
 	var params = req.body;
 	user.name = params.name;
 	user.email = params.email;
+	user.password = params.password;
 	user.age = params.age;
-	user.instrument = params.instrument;
+	user.url = params.url;
+	user.about = params.about;
+	user.bands = params.bands;
 	user.style = params.style;
+	user.instrument = params.instrument;
 	// user.location = [params.lat, params.long];
 	user.date = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 
